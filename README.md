@@ -6,6 +6,8 @@
 
     npm install econtent
 
+See npm for details: [https://www.npmjs.com/package/econtent](https://www.npmjs.com/package/econtent).
+
 ## Purpose
 
 Files have content and metadata. Markdown has already helps us go from boring text files to rich text (without RTF or proprietary voodoo), but it's not enough. My content needs sections and it needs metadata. They already have a create date and a modified date, but I often need to overwrite these. That's where this component comes in. It's been helping me for a few years now (well, this is the Node.JS refactor/port of the [Python edition](https://github.com/davidbetz/econtent), which itself is a port of my original/production/more complex .NET version).
