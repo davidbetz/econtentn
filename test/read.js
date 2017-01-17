@@ -60,7 +60,7 @@ describe("econtent", function () {
     });
 
     it("tests file parse", function (done) {
-        econtent.read_file(ITEM01_PATH)
+        econtent.readFile(ITEM01_PATH)
             .then(result => {
                 check(ITEM01_EXPECTED, result)
                 check_file_data(ITEM01_EXPECTED, result)
@@ -69,7 +69,7 @@ describe("econtent", function () {
     })
 
     it("tests parse manifest", function (done) {
-        econtent.read_file(MANIFEST_PATH)
+        econtent.readFile(MANIFEST_PATH)
             .then(result => {
                 expect(result['_']).to.equal(undefined)
 

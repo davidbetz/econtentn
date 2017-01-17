@@ -113,7 +113,7 @@ exports.read = function (input) {
     return obj
 }
 
-exports.read_file = function (filepath) {
+exports.readFile = function (filepath) {
     return new Promise((resolve, reject) => {
         fs.readFile(filepath, 'utf8', function (err, data) {
             if (err) throw reject(err);
