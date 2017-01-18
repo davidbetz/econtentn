@@ -20,6 +20,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+"use strict"
+
 const fs = require('fs');
 const path = require('path');
 
@@ -36,6 +38,7 @@ exports.read = function (input) {
     let section_data = null
     let content = {}
     let format_content = null
+    let format_index;
     for (let line of input.split('\n')) {
         if (line.length == 0)
             continue
@@ -138,7 +141,7 @@ exports.readFile = function (filepath) {
         fs.readFile(filepath, 'utf8', function (err, data) {
             if (err) throw reject(err);
 
-            obj = exports.read(data)
+            let obj = exports.read(data)
 
             fs.stat(filepath, (err, file_data) => {
                 if (err) throw reject(err);
