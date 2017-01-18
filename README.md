@@ -6,7 +6,9 @@
 
     npm install econtent
 
-See npm for details: [https://www.npmjs.com/package/econtent](https://www.npmjs.com/package/econtent)
+See `npmjs` for details: [https://www.npmjs.com/package/econtent](https://www.npmjs.com/package/econtent)
+
+View repo at: [https://github.com/davidbetz/econtentn](https://github.com/davidbetz/econtentn)
 
 ## Purpose
 
