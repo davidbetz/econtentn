@@ -2,6 +2,8 @@
 
 **Copyright (c) 2017 David Betz**
 
+[![Build Status](https://travis-ci.org/davidbetz/econtentn.svg?branch=master)](https://travis-ci.org/davidbetz/econtentn)
+
 ## Installation
 
     npm install econtent
