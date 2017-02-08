@@ -22,23 +22,23 @@
 
 "use strict"
 
-const fs = require('fs');
-const path = require('path');
+const fs = require('fs')
+const path = require('path')
 
-const beginre = /@@begin\|([0-9a-zA-Z_]+)\:([0-9a-zA-Z_]+)@@/;
-const subre = /^@@([0-9a-zA-Z_]+)\:([0-9a-zA-Z_]+)@@/;
-const startmetare = /^@([0-9a-zA-Z_\|]+)@(.*)/;
-const metare = /@@([0-9a-zA-Z_]+)\|([0-9a-zA-Z_]+)@@/;
+const beginre = /@@begin\|([0-9a-zA-Z_]+)\:([0-9a-zA-Z_]+)@@/
+const subre = /^@@([0-9a-zA-Z_]+)\:([0-9a-zA-Z_]+)@@/
+const startmetare = /^@([0-9a-zA-Z_\|]+)@(.*)/
+const metare = /@@([0-9a-zA-Z_]+)\|([0-9a-zA-Z_]+)@@/
 
 exports.read = function (input) {
-    input = input.replace(/\r\n/g, '\n');
+    input = input.replace(/\r\n/g, '\n')
     let obj = {}
     let body = []
     let index = 0
     let section_data = null
     let content = {}
     let format_content = null
-    let format_index;
+    let format_index
     for (let line of input.split('\n')) {
         if (line.length == 0)
             continue
@@ -139,12 +139,12 @@ exports.read = function (input) {
 exports.readFile = function (filepath) {
     return new Promise((resolve, reject) => {
         fs.readFile(filepath, 'utf8', function (err, data) {
-            if (err) throw reject(err);
+            if (err) throw reject(err)
 
             let obj = exports.read(data)
 
             fs.stat(filepath, (err, file_data) => {
-                if (err) throw reject(err);
+                if (err) throw reject(err)
                 //+ due to a file system design flaw, not all file systems have a file created date
                 if (!obj['_created']) {
                     obj['_created'] = file_data.ctime
@@ -154,21 +154,21 @@ exports.readFile = function (filepath) {
                 }
                 obj['_filename'] = path.basename(filepath)
 
-                const _filename = obj['_filename'];
-                let lio = _filename.lastIndexOf('.');
+                const _filename = obj['_filename']
+                let lio = _filename.lastIndexOf('.')
                 if (lio == -1) {
                     obj['_extension'] = _filename.substring(1, lio - 1)
                     obj['_basename'] = ''
                 }
                 else {
-                    const first = _filename.substring(0, lio);
-                    const second = _filename.substring(lio + 1, _filename.length);
+                    const first = _filename.substring(0, lio)
+                    const second = _filename.substring(lio + 1, _filename.length)
                     obj['_extension'] = second != '.' ? second : second.substring(1)
                     obj['_basename'] = first
                 }
 
-                return resolve(obj);
+                return resolve(obj)
             })
-        });
-    });
+        })
+    })
 }

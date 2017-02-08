@@ -1,10 +1,10 @@
-const expect = require('chai').expect;
-const assert = require('chai').assert;
+const expect = require('chai').expect
+const assert = require('chai').assert
 
-const fs = require('fs');
-const path = require('path');
+const fs = require('fs')
+const path = require('path')
 
-const econtent = require('../econtent');
+const econtent = require('../econtent')
 
 const CURRENT_PATH = __dirname
 const SAMPLE_PATH = path.join(CURRENT_PATH, '../sample')
@@ -16,7 +16,7 @@ const ITEM01_EXPECTED = {
         0: 'hollow unbraced needs mineral high fingerd strings red tragical having definement invisible@@footnote|78@@. flames grow pranks obey hearsed variable grandsire bodykins possessd worser oerthrown oerweigh healthful kingly wise faculty loggats best.\nunfortified chopine hill witchcraft countries toward nerve grief duty rivals.',
         1: {
             0: {
-                '_': "    alert((function() {\n      var item = 'item01';\n      return item.split('').reverse()\n    })());",
+                '_': "    alert((function() {\n      var item = 'item01'\n      return item.split('').reverse()\n    })())",
                 'format': 'javascript'
             },
             1: {
@@ -55,17 +55,17 @@ describe("econtent", function () {
         fs.readFile(ITEM01_PATH, 'utf8', function (err, data) {
             result = econtent.read(data)
             check(ITEM01_EXPECTED, result)
-            done();
+            done()
         })
-    });
+    })
 
     it("tests file parse", function (done) {
         econtent.readFile(ITEM01_PATH)
             .then(result => {
                 check(ITEM01_EXPECTED, result)
                 check_file_data(ITEM01_EXPECTED, result)
-                done();
-            });
+                done()
+            })
     })
 
     it("tests parse manifest", function (done) {
@@ -80,9 +80,9 @@ describe("econtent", function () {
                 expect(MANIFEST_EXPECTED['_modified']).to.equal(result['_modified'])
 
                 check_file_data(MANIFEST_EXPECTED, result)
-                done();
-            });
-    });
+                done()
+            })
+    })
 
     function check_file_data(expected, result) {
         expect(expected['_filename']).to.equal(result['_filename'])
@@ -104,4 +104,4 @@ describe("econtent", function () {
         expect(expected['_created']).to.equal(result['_created'])
         expect(expected['_modified']).to.equal(result['_modified'])
     }
-});
+})

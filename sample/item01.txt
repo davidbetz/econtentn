@@ -4,9 +4,9 @@ unfortified chopine hill witchcraft countries toward nerve grief duty rivals.
 
 @@begin|format:javascript@@
     alert((function() {
-      var item = 'item01';
+      var item = 'item01'
       return item.split('').reverse()
-    })());
+    })())
 @@format:python@@
     print('item01'[::-1])
 @@end@@
