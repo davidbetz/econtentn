@@ -3,6 +3,7 @@
 **Copyright (c) 2017 David Betz**
 
 [![Build Status](https://travis-ci.org/davidbetz/econtentn.svg?branch=master)](https://travis-ci.org/davidbetz/econtentn)
+[![npm version](https://badge.fury.io/js/econtent.svg)](https://badge.fury.io/js/econtent)
 
 ## Installation
 
