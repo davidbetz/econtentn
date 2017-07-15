@@ -1,4 +1,4 @@
-# Extended Content Reader (Node.JS)
+# Extended Content Reader (JavaScript)
 
 **Copyright (c) 2017 David Betz**
 
