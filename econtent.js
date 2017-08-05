@@ -35,9 +35,9 @@ exports.read = function (input) {
     let obj = {}
     let body = []
     let index = 0
-    let section_data = null
+    let section_data
     let content = {}
-    let format_content = null
+    let format_content
     let format_index
     for (let line of input.split('\n')) {
         if (line.length == 0)
@@ -56,13 +56,17 @@ exports.read = function (input) {
                     format_content = {}
                 }
             }
-            else if (section_data != null && line.startsWith('@@')) {
+            /* istanbul ignore next */
+            else if (typeof section_data !== 'undefined' && line.startsWith('@@')) {
                 if (line == '@@end@@') {
-                    if (format_content == null) {
-                        content[index] = {
-                            '_': body.join('\n')
-                        }
-                        content[index][section_data['type']] = section_data['code']
+                    /* istanbul ignore next */
+                    if (typeof format_content === 'undefined') {
+                        /* istanbul ignore next */
+                        throw new Error('unknown scenario')
+                        // content[index] = {
+                        //     '_': body.join('\n')
+                        // }
+                        // content[index][section_data['type']] = section_data['code']
                     }
                     else {
                         format_content[format_index] = {
@@ -74,17 +78,17 @@ exports.read = function (input) {
 
                     index = index + 1
                     body = []
-                    section_data = null
-                    format_content = null
+                    section_data = undefined
+                    format_content = undefined
                 }
                 else {
                     let switchresult = subre.exec(line)
                     if (switchresult != null) {
                         let [, type, code] = switchresult
-                        if (format_content == null) {
-                            format_content = {}
-                            format_index = 0
-                        }
+                        // if (format_content == null) {
+                        //     format_content = {}
+                        //     format_index = 0
+                        // }
                         format_content[format_index] = {
                             '_': body.join('\n')
                         }
@@ -111,6 +115,7 @@ exports.read = function (input) {
                     //+ don't save most stuff with prefix; it's my universal code for disabled (or system)
                     //+   it's VERY common to overwrite _created and _modified (since they are often killed
                     //+   when they go across FTP; but you can't mess with immutable stuff (e.g. filename)
+                    /* istanbul ignore next */
                     if (!tag_type.startsWith('_') || tag_type == '_created' || tag_type == '_modified') {
                         obj[tag_type] = tag_content
                     }
@@ -139,12 +144,11 @@ exports.read = function (input) {
 exports.readFile = function (filepath) {
     return new Promise((resolve, reject) => {
         fs.readFile(filepath, 'utf8', function (err, data) {
-            if (err) throw reject(err)
+            if (err) return reject(err)
 
             let obj = exports.read(data)
 
             fs.stat(filepath, (err, file_data) => {
-                if (err) throw reject(err)
                 //+ due to a file system design flaw, not all file systems have a file created date
                 if (!obj['_created']) {
                     obj['_created'] = file_data.ctime
@@ -157,13 +161,13 @@ exports.readFile = function (filepath) {
                 const _filename = obj['_filename']
                 let lio = _filename.lastIndexOf('.')
                 if (lio == -1) {
-                    obj['_extension'] = _filename.substring(1, lio - 1)
-                    obj['_basename'] = ''
+                    obj['_extension'] = ''
+                    obj['_basename'] = _filename
                 }
                 else {
                     const first = _filename.substring(0, lio)
                     const second = _filename.substring(lio + 1, _filename.length)
-                    obj['_extension'] = second != '.' ? second : second.substring(1)
+                    obj['_extension'] = second
                     obj['_basename'] = first
                 }
 
