@@ -1,19 +1,21 @@
 {
   "name": "econtent",
-  "version": "1.0.5",
-  "description": "**Copyright (c) 2017 David Betz**",
+  "version": "1.1.0",
+  "description": "Extended Content Reader",
   "main": "econtent.js",
   "scripts": {
     "test": "mocha test",
-    "report-coverage": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && codecov"
+    "report-coverage": "nyc --reporter=html --reporter=text mocha && codecov"
   },
-  "keywords": [],
-  "author": "",
+  "author": "David Betz",
   "license": "MIT",
+  "dependencies": {
+    "debug": "4.1.0"
+  },
   "devDependencies": {
-    "chai": "^3.5.0",
-    "codecov": "^2.3.0",
-    "istanbul": "^0.4.5",
-    "mocha": "^3.2.0"
+    "chai": "4.2.0",
+    "nyc": "13.1.0",
+    "codecov": "3.1.0",
+    "mocha": "5.2.0"
   }
 }

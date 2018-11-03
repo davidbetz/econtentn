@@ -1,6 +1,6 @@
 // MIT License
 
-// Copyright (c) 2016-2017 David Betz
+// Copyright (c) 2016-2018 David Betz
 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -24,6 +24,7 @@
 
 const fs = require('fs')
 const path = require('path')
+const debug = require('debug')('econtent')
 
 const beginre = /@@begin\|([0-9a-zA-Z_]+)\:([0-9a-zA-Z_]+)@@/
 const subre = /^@@([0-9a-zA-Z_]+)\:([0-9a-zA-Z_]+)@@/
@@ -142,6 +143,7 @@ exports.read = function (input) {
 }
 
 exports.readFile = function (filepath) {
+    debug('readFile', filepath)
     return new Promise((resolve, reject) => {
         fs.readFile(filepath, 'utf8', function (err, data) {
             if (err) return reject(err)

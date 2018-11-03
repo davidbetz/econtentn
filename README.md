@@ -1,6 +1,6 @@
 # Extended Content Reader (JavaScript)
 
-**Copyright (c) 2017 David Betz**
+Copyright (c) 2016-2018 David Betz
 
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
 [![Build Status](https://travis-ci.org/davidbetz/econtentjs.svg?branch=master)](https://travis-ci.org/davidbetz/econtentjs)
@@ -22,7 +22,7 @@ Related project:
 
 * [https://www.npmjs.com/package/etitle](https://www.npmjs.com/package/etitle)
 
-* [https://github.com/davidbetz/etitlen](https://github.com/davidbetz/etitlen)
+* [https://github.com/davidbetz/etitlejs](https://github.com/davidbetz/etitlejs)
 
 ## Purpose
 
@@ -32,12 +32,12 @@ It's easier to following if you just look at the example...
 
 The following example is ridiculous, but it's an example of the type of stuff you might store in a file:
 
-**item01.txt**
-    
+### item01.txt
+
     hollow unbraced needs mineral high fingerd strings red tragical having definement invisible@@footnote|78@@. flames grow pranks obey hearsed variable grandsire bodykins possessd worser oerthrown oerweigh healthful kingly wise faculty loggats best.
-    
+
     unfortified chopine hill witchcraft countries toward nerve grief duty rivals.
-    
+
     @@begin|format:javascript@@
         alert((function() {
           var item = 'item01';
@@ -46,9 +46,9 @@ The following example is ridiculous, but it's an example of the type of stuff yo
     @@format:python@@
         print('item01'[::-1])
     @@end@@
-    
+
     patience unhouseld pours lapsed would passion point blastments lady spectators.
-    
+
     @author@ Billy Speareshakes
     @title@ Thy Wonderful Randomious
     @page@ 728
@@ -96,7 +96,7 @@ But, it's not just metadata. On my technical website, I require color syntax for
 
 See test_read.py for usage.
 
-# Use Cases
+## Use Cases
 
 * one entry == blog entry
 * one entry == one quote (with citation data)
