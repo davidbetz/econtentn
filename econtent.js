@@ -31,7 +31,7 @@ const subre = /^@@([0-9a-zA-Z_]+)\:([0-9a-zA-Z_]+)@@/
 const startmetare = /^@([0-9a-zA-Z_\|]+)@(.*)/
 const metare = /@@([0-9a-zA-Z_]+)\|([0-9a-zA-Z_]+)@@/
 
-exports.read = function (input) {
+const read = function (input) {
     input = input.replace(/\r\n/g, '\n')
     let obj = {}
     let body = []
@@ -64,16 +64,14 @@ exports.read = function (input) {
                     if (typeof format_content === 'undefined') {
                         /* istanbul ignore next */
                         throw new Error('unknown scenario')
-                        // content[index] = {
-                        //     '_': body.join('\n')
-                        // }
-                        // content[index][section_data['type']] = section_data['code']
                     }
                     else {
                         format_content[format_index] = {
                             '_': body.join('\n')
                         }
-                        format_content[index][section_data['type']] = section_data['code']
+                        if(typeof format_content[format_index] !== 'undefined') {
+                            format_content[format_index][section_data['type']] = section_data['code']
+                        }
                         content[index] = format_content
                     }
 
@@ -107,10 +105,10 @@ exports.read = function (input) {
                 let [, tag_type, tag_content] = startmetaresult
                 tag_content = tag_content.trim()
                 if (tag_type.indexOf('|') > -1) {
-                    let [bar_left, bar_right] = tag_type.split('|', 1)
-                    obj[bar_left] = {
-                        bar_right: tag_content
-                    }
+                    let [bar_left, bar_right] = tag_type.split('|')
+                    obj[bar_left] = { }
+                    obj[bar_left][bar_right] = tag_content
+
                 }
                 else {
                     //+ don't save most stuff with prefix; it's my universal code for disabled (or system)
@@ -142,13 +140,13 @@ exports.read = function (input) {
     return obj
 }
 
-exports.readFile = function (filepath) {
+const readFile = function (filepath) {
     debug('readFile', filepath)
     return new Promise((resolve, reject) => {
         fs.readFile(filepath, 'utf8', function (err, data) {
             if (err) return reject(err)
 
-            let obj = exports.read(data)
+            let obj = read(data)
 
             fs.stat(filepath, (err, file_data) => {
                 //+ due to a file system design flaw, not all file systems have a file created date
@@ -177,4 +175,9 @@ exports.readFile = function (filepath) {
             })
         })
     })
+}
+
+module.exports = {
+    read,
+    readFile
 }
