@@ -1,17 +1,18 @@
 {
   "name": "econtent",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Extended Content Reader",
   "main": "econtent.js",
   "scripts": {
     "test": "mocha test",
     "report-coverage": "nyc --reporter=html --reporter=text mocha && codecov"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/davidbetz/econtentjs"
+  },
   "author": "David Betz",
   "license": "MIT",
-  "dependencies": {
-    "debug": "4.1.0"
-  },
   "devDependencies": {
     "chai": "4.2.0",
     "nyc": "13.1.0",
