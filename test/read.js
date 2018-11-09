@@ -19,7 +19,7 @@ const MANIFEST_PATH = path.join(SAMPLE_PATH, '.manifest')
 
 const ITEM01_EXPECTED = {
     '_': {
-        0: 'hollow unbraced needs mineral high fingerd strings red tragical having definement invisible@@footnote|78@@. flames grow pranks obey hearsed variable grandsire bodykins possessd worser oerthrown oerweigh healthful kingly wise faculty loggats best.\nunfortified chopine hill witchcraft countries toward nerve grief duty rivals.',
+        0: 'hollow unbraced needs mineral high fingerd strings red tragical having definement invisible@@footnote|78@@. flames grow pranks obey hearsed variable grandsire bodykins possessd worser oerthrown oerweigh healthful kingly wise faculty loggats best.\n\nunfortified chopine hill witchcraft countries toward nerve grief duty rivals.',
         1: {
             0: {
                 '_': "    alert((function() {\n      var item = 'item01'\n      return item.split('').reverse()\n    })())",
@@ -47,7 +47,7 @@ const ITEM01_EXPECTED = {
 
 const ITEM02_EXPECTED = {
     '_': {
-        0: 'hollow unbraced needs mineral high fingerd strings red tragical having definement invisible@@footnote|78@@. flames grow pranks obey hearsed variable grandsire bodykins possessd worser oerthrown oerweigh healthful kingly wise faculty loggats best.\nunfortified chopine hill witchcraft countries toward nerve grief duty rivals.',
+        0: 'hollow unbraced needs mineral high fingerd strings red tragical having definement invisible@@footnote|78@@. flames grow pranks obey hearsed variable grandsire bodykins possessd worser oerthrown oerweigh healthful kingly wise faculty loggats best.\n\nunfortified chopine hill witchcraft countries toward nerve grief duty rivals.',
         1: {
             0: {
                 '_': "    alert((function() {\n      var item = 'item01'\n      return item.split('').reverse()\n    })())",
@@ -75,7 +75,7 @@ const ITEM02_EXPECTED = {
 
 const ITEM03_EXPECTED = {
     '_': {
-        0: 'hollow unbraced needs mineral high fingerd strings red tragical having definement invisible@@footnote|78@@. flames grow pranks obey hearsed variable grandsire bodykins possessd worser oerthrown oerweigh healthful kingly wise faculty loggats best.\nunfortified chopine hill witchcraft countries toward nerve grief duty rivals.',
+        0: 'hollow unbraced needs mineral high fingerd strings red tragical having definement invisible@@footnote|78@@. flames grow pranks obey hearsed variable grandsire bodykins possessd worser oerthrown oerweigh healthful kingly wise faculty loggats best.\n\nunfortified chopine hill witchcraft countries toward nerve grief duty rivals.',
         1: {
             0: {
                 '_': "    alert((function() {\n      var item = 'item01'\n      return item.split('').reverse()\n    })())",
@@ -103,7 +103,7 @@ const ITEM03_EXPECTED = {
 
 const ITEM04_EXPECTED = {
     '_': {
-        0: 'hollow unbraced needs mineral high fingerd strings red tragical having definement invisible@@footnote|78@@. flames grow pranks obey hearsed variable grandsire bodykins possessd worser oerthrown oerweigh healthful kingly wise faculty loggats best.\nunfortified chopine hill witchcraft countries toward nerve grief duty rivals.',
+        0: 'hollow unbraced needs mineral high fingerd strings red tragical having definement invisible@@footnote|78@@. flames grow pranks obey hearsed variable grandsire bodykins possessd worser oerthrown oerweigh healthful kingly wise faculty loggats best.\n\nunfortified chopine hill witchcraft countries toward nerve grief duty rivals.',
         1: {
             0: {
                 '_': "    alert((function() {\n      var item = 'item01'\n      return item.split('').reverse()\n    })())",
@@ -131,7 +131,7 @@ const ITEM04_EXPECTED = {
 
 const ITEM05_EXPECTED = {
     '_': {
-        0: 'hollow unbraced needs mineral high fingerd strings red tragical having definement invisible@@footnote|78@@. flames grow pranks obey hearsed variable grandsire bodykins possessd worser oerthrown oerweigh healthful kingly wise faculty loggats best.\nunfortified chopine hill witchcraft countries toward nerve grief duty rivals.',
+        0: 'hollow unbraced needs mineral high fingerd strings red tragical having definement invisible@@footnote|78@@. flames grow pranks obey hearsed variable grandsire bodykins possessd worser oerthrown oerweigh healthful kingly wise faculty loggats best.\n\nunfortified chopine hill witchcraft countries toward nerve grief duty rivals.',
         1: {
             0: {
                 '_': "    alert((function() {\n      var item = 'item01'\n      return item.split('').reverse()\n    })())",
@@ -166,6 +166,7 @@ describe("econtent", function () {
     it("tests parse", function (done) {
         fs.readFile(ITEM01_PATH, 'utf8', function (err, data) {
             let result = econtent.read(data)
+
             check(ITEM01_EXPECTED, result)
             done()
         })

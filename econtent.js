@@ -40,14 +40,15 @@ const read = function (input) {
     let format_content
     let format_index
     for (let line of input.split('\n')) {
-        if (line.length == 0)
-            continue
-        if (line.startsWith('@@')) {
+        if (line.length == 0) {
+            body.push('')
+        }
+        else if (line.startsWith('@@')) {
             if (line.startsWith('@@begin|')) {
                 let beginresult = beginre.exec(line)
                 if (beginresult != null) {
                     let [, type, code] = beginresult
-                    content[index] = body.join('\n')
+                    content[index] = body.join('\n').replace(/(\n|\r)+$/, '').replace(/^(\n|\r)+/, '')
                     index = index + 1
                     body = []
                     section_data = { 'type': type, 'code': code }
@@ -66,7 +67,7 @@ const read = function (input) {
                     }
                     else {
                         format_content[format_index] = {
-                            '_': body.join('\n')
+                            '_': body.join('\n').replace(/(\n|\r)+$/, '').replace(/^(\n|\r)+/, '')
                         }
                         if(typeof format_content[format_index] !== 'undefined') {
                             format_content[format_index][section_data['type']] = section_data['code']
@@ -88,7 +89,7 @@ const read = function (input) {
                         //     format_index = 0
                         // }
                         format_content[format_index] = {
-                            '_': body.join('\n')
+                            '_': body.join('\n').replace(/(\n|\r)+$/, '').replace(/^(\n|\r)+/, '')
                         }
                         format_content[format_index][section_data['type']] = section_data['code']
                         section_data = { 'type': type, 'code': code }
@@ -132,7 +133,7 @@ const read = function (input) {
     }
 
     if (body.length > 0) {
-        content[index] = body.join('\n')
+        content[index] = body.join('\n').replace(/(\n|\r)+$/, '').replace(/^(\n|\r)+/, '')
         obj['_'] = content
     }
 
